@@ -1,4 +1,4 @@
-package com.z100.cocktailshop.att.components.user.dto;
+package com.z100.cocktailshop.components.user.dto;
 
 import lombok.Getter;
 import lombok.Setter;

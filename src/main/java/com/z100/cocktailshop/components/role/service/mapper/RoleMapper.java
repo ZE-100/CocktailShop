@@ -1,7 +1,7 @@
-package com.z100.cocktailshop.att.components.role.service.mapper;
+package com.z100.cocktailshop.components.role.service.mapper;
 
-import com.z100.cocktailshop.att.components.role.entity.Role;
-import com.z100.cocktailshop.att.components.user.entity.User;
+import com.z100.cocktailshop.components.role.entity.Role;
+import com.z100.cocktailshop.components.user.entity.User;
 import org.mapstruct.Mapper;
 
 import java.util.List;

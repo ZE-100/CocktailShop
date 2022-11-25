@@ -1,13 +1,13 @@
-package com.z100.cocktailshop.att.components.user.service.crud.impl;
+package com.z100.cocktailshop.components.user.service.crud.impl;
 
-import com.z100.cocktailshop.att.components.user.dto.UserChangeInDTO;
-import com.z100.cocktailshop.att.components.user.dto.UserInDTO;
-import com.z100.cocktailshop.att.components.user.dto.UserOutDTO;
-import com.z100.cocktailshop.att.components.user.entity.User;
-import com.z100.cocktailshop.att.components.user.repository.UserRepository;
-import com.z100.cocktailshop.att.components.user.service.crud.IUserService;
-import com.z100.cocktailshop.att.components.user.service.mapper.UserMapper;
-import com.z100.cocktailshop.att.exceptions.ApiException;
+import com.z100.cocktailshop.components.user.dto.UserChangeInDTO;
+import com.z100.cocktailshop.components.user.dto.UserInDTO;
+import com.z100.cocktailshop.components.user.dto.UserOutDTO;
+import com.z100.cocktailshop.components.user.entity.User;
+import com.z100.cocktailshop.components.user.repository.UserRepository;
+import com.z100.cocktailshop.components.user.service.crud.IUserService;
+import com.z100.cocktailshop.components.user.service.mapper.UserMapper;
+import com.z100.cocktailshop.exceptions.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

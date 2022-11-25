@@ -1,6 +1,6 @@
-package com.z100.cocktailshop.att.components.role.repository;
+package com.z100.cocktailshop.components.role.repository;
 
-import com.z100.cocktailshop.att.components.role.entity.Role;
+import com.z100.cocktailshop.components.role.entity.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

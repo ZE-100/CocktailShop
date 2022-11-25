@@ -1,8 +1,8 @@
-package com.z100.cocktailshop.att.components.user.controller;
+package com.z100.cocktailshop.components.user.controller;
 
-import com.z100.cocktailshop.att.components.user.dto.UserChangeInDTO;
-import com.z100.cocktailshop.att.components.user.dto.UserInDTO;
-import com.z100.cocktailshop.att.components.user.service.crud.IUserService;
+import com.z100.cocktailshop.components.user.dto.UserChangeInDTO;
+import com.z100.cocktailshop.components.user.dto.UserInDTO;
+import com.z100.cocktailshop.components.user.service.crud.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.z100.cocktailshop.att.exceptions;
+package com.z100.cocktailshop.exceptions;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

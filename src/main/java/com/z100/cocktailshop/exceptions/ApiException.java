@@ -1,4 +1,4 @@
-package com.z100.cocktailshop.att.exceptions;
+package com.z100.cocktailshop.exceptions;
 
 import lombok.Getter;
 

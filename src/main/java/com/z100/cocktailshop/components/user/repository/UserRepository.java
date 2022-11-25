@@ -1,6 +1,6 @@
-package com.z100.cocktailshop.att.components.user.repository;
+package com.z100.cocktailshop.components.user.repository;
 
-import com.z100.cocktailshop.att.components.user.entity.User;
+import com.z100.cocktailshop.components.user.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

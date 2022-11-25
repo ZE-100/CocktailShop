@@ -1,11 +1,11 @@
-package com.z100.cocktailshop.att.components.role.entity;
+package com.z100.cocktailshop.components.role.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.z100.cocktailshop.att.components.user.entity.User;
+import com.z100.cocktailshop.components.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Getter
