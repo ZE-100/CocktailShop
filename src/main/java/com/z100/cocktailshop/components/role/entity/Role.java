@@ -5,7 +5,7 @@ import com.z100.cocktailshop.components.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
