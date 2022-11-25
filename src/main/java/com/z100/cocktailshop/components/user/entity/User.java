@@ -2,7 +2,7 @@ package com.z100.cocktailshop.components.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.z100.cocktailshop.components.role.entity.Role;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 

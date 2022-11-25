@@ -5,7 +5,7 @@ import com.z100.cocktailshop.components.user.dto.UserInDTO;
 import com.z100.cocktailshop.components.user.dto.UserOutDTO;
 import com.z100.cocktailshop.exceptions.*;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 
 public interface IUserService {
 

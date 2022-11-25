@@ -10,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -20,12 +18,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.csrf().disable()
+		/*http.csrf().disable()
 				.sessionManagement()
 				.sessionCreationPolicy(STATELESS)
 				.and()
 				.exceptionHandling()
-				.accessDeniedPage("/error/403");
+				.accessDeniedPage("/error/403");*/
 	}
 
 	@Bean

@@ -24,7 +24,7 @@ public class UserService implements IUserService {
 
 		User user = userMapper.inDTOToEntity(inDTO);
 
-		return userMapper.entityToOutDTO(userRepository.save(user).orElseThrow(ApiException::new));
+		return userMapper.entityToOutDTO(userRepository.save(user));
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class UserService implements IUserService {
 
 		User user = userMapper.changeInDTOToEntity(userIn);
 
-		return userRepository.save(user).isPresent();
+		return userRepository.save(user) != null;
 	}
 
 	@Override
