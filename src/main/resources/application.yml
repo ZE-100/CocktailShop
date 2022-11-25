@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        enable_lazy_load_no_trans: 'true'
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: root
+    username: root
+    url: jdbc:mariadb://localhost:3306/cocktailshop #add second db
