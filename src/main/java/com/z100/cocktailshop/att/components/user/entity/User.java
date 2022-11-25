@@ -1,9 +1,12 @@
 package com.z100.cocktailshop.att.components.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.z100.cocktailshop.att.components.role.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +31,9 @@ public class User {
 	@Column(name = "preferences")
 	private String preferences;
 
-	@Column(name = "role")
-	private String role;
+	@OneToMany(cascade = {CascadeType.ALL},
+			orphanRemoval = true,
+			mappedBy = "user")
+	@JsonBackReference
+	private List<Role> roles;
 }
