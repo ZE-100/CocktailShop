@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 @Component
 @AllArgsConstructor
@@ -48,10 +49,7 @@ public class CocktailServiceImpl implements CocktailService {
 	@Override
 	public List<CocktailOutDTO> getAllFrom(String username) {
 
-		List<Cocktail> cocktails = cocktailRepository.findAllByUserUsername(username)
-				.orElseThrow(() -> new ApiException("Cocktail with ID not found"));
-
-		return cocktails.stream()
+		return StreamSupport.stream(cocktailRepository.findAll().spliterator(), false)
 				.map(cocktailMapper::entityToOutDTO)
 				.toList();
 	}
