@@ -1,6 +1,5 @@
 package com.z100.cocktailshop.components.user.controller;
 
-import com.z100.cocktailshop.components.user.dto.UserChangeInDTO;
 import com.z100.cocktailshop.components.user.dto.UserInDTO;
 import com.z100.cocktailshop.components.user.service.crud.IUserService;
 import lombok.AllArgsConstructor;
@@ -45,14 +44,14 @@ public class UserController {
 	}
 
 	@PutMapping("/user/update")
-	public ResponseEntity<?> update(@ModelAttribute UserChangeInDTO userChangeIn) {
+	public ResponseEntity<?> update(@ModelAttribute UserInDTO userIn) {
 
-		return ResponseEntity.ok(userService.update(userChangeIn));
+		return ResponseEntity.ok(userService.update(userIn));
 	}
 
 	@DeleteMapping("/user/delete")
-	public ResponseEntity<?> delete(@ModelAttribute String username) {
+	public ResponseEntity<?> delete(@ModelAttribute Long id) {
 
-		return ResponseEntity.ok(userService.delete(username));
+		return ResponseEntity.ok(userService.delete(id));
 	}
 }

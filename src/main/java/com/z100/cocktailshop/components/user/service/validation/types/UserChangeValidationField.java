@@ -4,8 +4,13 @@ import com.z100.cocktailshop.util.validators.types.ValidationField;
 
 public enum UserChangeValidationField implements ValidationField {
 
-	NEW_EMAIL("newEmail"),
-	NEW_PASSWORD("newPassword");
+	NEW_ID("id"),
+	NEW_EMAIL("email"),
+	NEW_USERNAME("username"),
+	NEW_PASSWORD("password"),
+	NEW_NAME("name"),
+	NEW_ROLE("role");
+
 	private final String location;
 
 	UserChangeValidationField(String location) {

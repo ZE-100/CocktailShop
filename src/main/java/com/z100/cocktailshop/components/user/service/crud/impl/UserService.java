@@ -1,15 +1,20 @@
 package com.z100.cocktailshop.components.user.service.crud.impl;
 
-import com.z100.cocktailshop.components.user.dto.UserChangeInDTO;
 import com.z100.cocktailshop.components.user.dto.UserInDTO;
 import com.z100.cocktailshop.components.user.dto.UserOutDTO;
 import com.z100.cocktailshop.components.user.entity.User;
 import com.z100.cocktailshop.components.user.repository.UserRepository;
 import com.z100.cocktailshop.components.user.service.crud.IUserService;
 import com.z100.cocktailshop.components.user.service.mapper.UserMapper;
+import com.z100.cocktailshop.components.user.service.processors.UserChangeSubmissionProcessor;
+import com.z100.cocktailshop.components.user.service.processors.UserSubmissionProcessor;
 import com.z100.cocktailshop.exceptions.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 @Component
 @AllArgsConstructor
@@ -19,29 +24,54 @@ public class UserService implements IUserService {
 
 	private final UserMapper userMapper;
 
+	private final UserSubmissionProcessor submissionProcessor;
+
+	private final UserChangeSubmissionProcessor changeSubmissionProcessor;
+
 	@Override
-	public UserOutDTO register(UserInDTO inDTO) {
+	@Transactional(rollbackOn = ApiException.class)
+	public UserOutDTO register(UserInDTO userIn) {
 
-		User user = userMapper.inDTOToEntity(inDTO);
+		submissionProcessor.process(userIn);
 
-		return userMapper.entityToOutDTO(userRepository.save(user));
+		return userMapper.entityToOutDTO(submissionProcessor.getSavedUser());
 	}
 
 	@Override
-	public Boolean update(UserChangeInDTO userIn) {
+	public UserOutDTO get(Long id) {
 
-		User user = userMapper.changeInDTOToEntity(userIn);
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new ApiException("User with ID not found"));
 
-		return userRepository.save(user) != null;
+		return userMapper.entityToOutDTO(user);
 	}
 
 	@Override
-	public Boolean delete(String username) {
+	public List<UserOutDTO> getAll() {
 
-		User user = userRepository.findByUsername(username).orElseThrow(ApiException::new);
+		return StreamSupport.stream(userRepository.findAll().spliterator(), false)
+				.map(userMapper::entityToOutDTO)
+				.toList();
+	}
+
+	@Override
+	@Transactional(rollbackOn = ApiException.class)
+	public UserOutDTO update(UserInDTO userIn) {
+
+		changeSubmissionProcessor.process(userIn);
+
+		return userMapper.entityToOutDTO(changeSubmissionProcessor.getUpdatedUser());
+	}
+
+	@Override
+	@Transactional(rollbackOn = ApiException.class)
+	public Boolean delete(Long id) {
+
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new ApiException("User not found"));
 
 		userRepository.delete(user);
 
-		return userRepository.findByUsername(username).isEmpty();
+		return userRepository.findById(id).isEmpty();
 	}
 }

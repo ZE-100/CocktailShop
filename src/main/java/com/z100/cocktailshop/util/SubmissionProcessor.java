@@ -1,38 +1,47 @@
 package com.z100.cocktailshop.util;
 
 import com.z100.cocktailshop.util.validators.ValidationResult;
+import lombok.Getter;
+import lombok.Setter;
 
-public abstract class SubmissionProcessor<T> {
+import static lombok.AccessLevel.PROTECTED;
+
+/**
+ * Processor to handle various submissions
+ *
+ * @param <T> Type of the input-object
+ * @param <E> Type of the output-object
+ */
+public abstract class SubmissionProcessor<T, E> {
 
 	protected T submission;
 
-	private boolean isOk = true;
+	@Getter(PROTECTED)
+	@Setter(PROTECTED)
+	private E submissionAsEntity;
 
-	public SubmissionProcessor<T> process(T t) {
+	public void process(T t) {
 
 		if (validate(t).isOk()) {
 
-			prePersistOperations(t);
+			pre(t);
 
-			persist(t);
+			if (getSubmissionAsEntity() == null)
+				setSubmissionAsEntity(mapSubmissionToEntity(t));
 
-			postPersistOperations(t);
-		} else {
-			isOk = false;
+			persist(getSubmissionAsEntity());
+
+			post(t);
 		}
-
-		return this;
-	}
-
-	public boolean isOk() {
-		return isOk;
 	}
 
 	protected abstract ValidationResult validate(T t);
 
-	protected abstract void persist(T t);
+	protected abstract void persist(E e);
 
-	protected abstract void postPersistOperations(T t);
+	protected abstract void pre(T t);
 
-	protected abstract void prePersistOperations(T t);
+	protected abstract E mapSubmissionToEntity(T t);
+
+	protected abstract void post(T t);
 }

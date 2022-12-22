@@ -1,10 +1,7 @@
 package com.z100.cocktailshop.util.validators;
 
 import com.z100.cocktailshop.util.validators.collectors.ReasonCollector;
-import com.z100.cocktailshop.util.validators.rejectors.BaseRejector;
-import com.z100.cocktailshop.util.validators.rejectors.BooleanRejector;
-import com.z100.cocktailshop.util.validators.rejectors.IntegerRejector;
-import com.z100.cocktailshop.util.validators.rejectors.StringRejector;
+import com.z100.cocktailshop.util.validators.rejectors.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,4 +27,11 @@ public class Validator {
 		return new IntegerRejector(new Pass(), entry);
 	}
 
+	public static DoubleRejector reject(Double entry) {
+		return new DoubleRejector(new Pass(), entry);
+	}
+
+	public static LongRejector reject(Long entry) {
+		return new LongRejector(new Pass(), entry);
+	}
 }

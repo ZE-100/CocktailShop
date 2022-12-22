@@ -2,9 +2,9 @@ package com.z100.cocktailshop.server.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.z100.cocktailshop.server.security.util.JwtTokenUtil;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.FilterChain;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
