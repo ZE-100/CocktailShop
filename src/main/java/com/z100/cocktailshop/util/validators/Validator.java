@@ -30,4 +30,8 @@ public class Validator {
 	public static DoubleRejector reject(Double entry) {
 		return new DoubleRejector(new Pass(), entry);
 	}
+
+	public static LongRejector reject(Long entry) {
+		return new LongRejector(new Pass(), entry);
+	}
 }
