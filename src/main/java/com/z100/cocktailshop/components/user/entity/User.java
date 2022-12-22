@@ -1,6 +1,7 @@
 package com.z100.cocktailshop.components.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.z100.cocktailshop.components.cocktail.entity.Cocktail;
 import com.z100.cocktailshop.components.role.entity.Role;
 import javax.persistence.*;
 import lombok.Getter;
@@ -36,4 +37,10 @@ public class User {
 			mappedBy = "user")
 	@JsonBackReference
 	private List<Role> roles;
+
+	@OneToMany(cascade = {CascadeType.ALL},
+			orphanRemoval = true,
+			mappedBy = "user")
+	@JsonBackReference
+	private List<Cocktail> cocktails;
 }

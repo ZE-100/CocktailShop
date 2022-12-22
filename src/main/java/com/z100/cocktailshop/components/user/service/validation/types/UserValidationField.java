@@ -4,6 +4,7 @@ import com.z100.cocktailshop.util.validators.types.ValidationField;
 
 public enum UserValidationField implements ValidationField {
 
+	ID("id"),
 	EMAIL("email"),
 	USERNAME("username"),
 	PASSWORD("password"),

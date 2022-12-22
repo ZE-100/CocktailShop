@@ -8,13 +8,13 @@ import com.z100.cocktailshop.components.user.service.validation.UserSubmissionVa
 import com.z100.cocktailshop.exceptions.*;
 import com.z100.cocktailshop.util.SubmissionProcessor;
 import com.z100.cocktailshop.util.validators.ValidationResult;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserSubmissionProcessor extends SubmissionProcessor<UserInDTO> {
+public class UserSubmissionProcessor extends SubmissionProcessor<UserInDTO, User> {
 
 	private final UserSubmissionValidator userSubmissionValidator;
 
@@ -22,39 +22,38 @@ public class UserSubmissionProcessor extends SubmissionProcessor<UserInDTO> {
 
 	private final UserMapper userMapper;
 
-	private final PasswordEncoder passwordEncoder;
-
-	public User getPersistedEntity() {
-		return userRepository.findByUsername(submission.getUsername())
-				.orElseThrow(() -> new ApiException("User not get-able, due to error"));
-	}
+	@Getter
+	private User savedUser;
 
 	@Override
 	protected ValidationResult validate(UserInDTO userIn) {
+
 		return userSubmissionValidator.validate(userIn);
 	}
 
 	@Override
-	protected void persist(UserInDTO userIn) {
+	protected void persist(User submission) {
 
-		User user = userMapper.inDTOToEntity(userIn);
-
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-		userRepository.save(user);
+		savedUser = userRepository.save(submission);
 	}
 
 	@Override
-	protected void prePersistOperations(UserInDTO userIn) {
-		if (userRepository.findByUsername(userIn.getUsername()).isPresent()) {
+	protected void pre(UserInDTO userIn) {
+
+		if (userRepository.findByUsername(userIn.getUsername()).isPresent())
 			throw new ApiException("Username already exists");
-		}
 	}
 
 	@Override
-	protected void postPersistOperations(UserInDTO userIn) {
-		if (userRepository.findByUsername(userIn.getUsername()).isEmpty()) {
+	protected User mapSubmissionToEntity(UserInDTO userIn) {
+
+		return userMapper.inDTOToEntity(userIn);
+	}
+
+	@Override
+	protected void post(UserInDTO userIn) {
+
+		if (userRepository.findByUsername(userIn.getUsername()).isEmpty())
 			throw new ApiException("User not persisted correctly");
-		}
 	}
 }

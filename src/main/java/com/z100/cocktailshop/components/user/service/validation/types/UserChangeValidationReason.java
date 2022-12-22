@@ -4,9 +4,11 @@ import com.z100.cocktailshop.util.validators.types.ValidationReason;
 
 public enum UserChangeValidationReason implements ValidationReason {
 
-	NEW_EMAIL_NULL("New e-mail cannot be null"),
-	NEW_PASSWORD_NULL("New password cannot be null"),
-	NEW_PASSWORD_INVALID("New password doesn't match regex");
+	NEW_ID_INVALID("Id cannot be invalid"),
+	NEW_USERNAME_NULL("Username cannot be null"),
+	NEW_EMAIL_NULL("E-mail cannot be null"),
+	NEW_PASSWORD_NULL("Password cannot be null"),
+	NEW_PASSWORD_INVALID("Password doesn't match regex");
 
 	String reason;
 

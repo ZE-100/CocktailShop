@@ -1,51 +1,65 @@
 package com.z100.cocktailshop.components.user.service.processors;
 
-import com.z100.cocktailshop.components.user.dto.UserChangeInDTO;
+import com.z100.cocktailshop.components.user.dto.UserInDTO;
 import com.z100.cocktailshop.components.user.entity.User;
 import com.z100.cocktailshop.components.user.repository.UserRepository;
+import com.z100.cocktailshop.components.user.service.mapper.UserMapper;
 import com.z100.cocktailshop.components.user.service.validation.UserChangeSubmissionValidator;
 import com.z100.cocktailshop.exceptions.*;
 import com.z100.cocktailshop.util.SubmissionProcessor;
 import com.z100.cocktailshop.util.validators.ValidationResult;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserChangeSubmissionProcessor extends SubmissionProcessor<UserChangeInDTO> {
+public class UserChangeSubmissionProcessor extends SubmissionProcessor<UserInDTO, User> {
 
 	private final UserChangeSubmissionValidator userChangeSubmissionValidator;
 
 	private final UserRepository userRepository;
 
+	private final UserMapper userMapper;
+
+	private User userFromDb;
+
+	@Getter
+	private User updatedUser;
+
 	@Override
-	protected ValidationResult validate(UserChangeInDTO userIn) {
-		return userChangeSubmissionValidator.validate(userIn);
+	protected ValidationResult validate(UserInDTO submission) {
+		return userChangeSubmissionValidator.validate(submission);
 	}
 
 	@Override
-	protected void persist(UserChangeInDTO userIn) {
+	protected void persist(User submission) {
 
-		User user = userRepository.findByUsername("")
-				.orElseThrow(() -> new ApiException("User to edit not found"));
+		userMapper.updateEntity(userFromDb, submission);
 
-		user.setEmail(userIn.getNewEmail());
-		user.setPassword(userIn.getNewPassword());
-
-		userRepository.save(user);
+		updatedUser = userRepository.save(userFromDb);
 	}
 
 	@Override
-	protected void prePersistOperations(UserChangeInDTO userIn) {
-		if (userRepository.findByEmail(userIn.getNewEmail()).isPresent()) {
+	protected void pre(UserInDTO userIn) {
+
+		if (userRepository.findByEmail(userIn.getEmail()).isPresent())
 			throw new ApiException("Email already exists");
-		}
+
+		userFromDb = userRepository.findById(userIn.getId())
+				.orElseThrow(() -> new ApiException("User doesn't exist"));
 	}
 
 	@Override
-	protected void postPersistOperations(UserChangeInDTO userIn) {
-		if (userRepository.findByEmailAndPassword(userIn.getNewEmail(), userIn.getNewPassword()).isEmpty()) {
-			throw new ApiException("User not updated correctly");
-		}
+	protected User mapSubmissionToEntity(UserInDTO userIn) {
+
+		return userMapper.inDTOToEntity(userIn);
+	}
+
+	@Override
+	protected void post(UserInDTO userIn) {
+
+		if (userRepository.findByUsername(userIn.getUsername()).isEmpty())
+			throw new ApiException("User not updated");
 	}
 }
