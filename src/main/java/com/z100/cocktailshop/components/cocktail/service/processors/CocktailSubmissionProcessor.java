@@ -37,18 +37,19 @@ public class CocktailSubmissionProcessor extends SubmissionProcessor<CocktailInD
 	}
 
 	@Override
-	protected Cocktail mapSubmissionToEntity(CocktailInDTO cocktailIn) {
-		return cocktailMapper.inDTOToEntity(cocktailIn);
-	}
-
-	@Override
 	protected void pre(CocktailInDTO cocktailIn) {
 	}
 
 	@Override
+	protected Cocktail mapSubmissionToEntity(CocktailInDTO cocktailIn) {
+
+		return cocktailMapper.inDTOToEntity(cocktailIn);
+	}
+
+	@Override
 	protected void post(CocktailInDTO cocktailIn) {
-		if (savedCocktail == null) {
+
+		if (savedCocktail == null)
 			throw new ApiException("Cocktail not persisted");
-		}
 	}
 }

@@ -18,31 +18,21 @@ public abstract class SubmissionProcessor<T, E> {
 
 	@Getter(PROTECTED)
 	@Setter(PROTECTED)
-	private E entity;
+	private E submissionAsEntity;
 
-	private boolean isOk = true;
-
-	public SubmissionProcessor<T, E> process(T t) {
+	public void process(T t) {
 
 		if (validate(t).isOk()) {
 
 			pre(t);
 
-			if (getEntity() == null)
-				setEntity(mapSubmissionToEntity(t));
+			if (getSubmissionAsEntity() == null)
+				setSubmissionAsEntity(mapSubmissionToEntity(t));
 
-			persist(getEntity());
+			persist(getSubmissionAsEntity());
 
 			post(t);
-		} else {
-			isOk = false;
 		}
-
-		return this;
-	}
-
-	public boolean isOk() {
-		return isOk;
 	}
 
 	protected abstract ValidationResult validate(T t);

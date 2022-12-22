@@ -14,6 +14,5 @@ public abstract class CocktailMapper {
 
 	public abstract Cocktail inDTOToEntity(CocktailInDTO userIn);
 
-	@Mapping(target = "id", ignore = true)
 	public abstract void updateEntity(Cocktail source, @MappingTarget Cocktail target);
 }

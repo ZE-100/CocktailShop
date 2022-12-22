@@ -33,16 +33,11 @@ public class CocktailChangeSubmissionProcessor extends SubmissionProcessor<Cockt
 	}
 
 	@Override
-	protected void persist(Cocktail newCocktail) {
+	protected void persist(Cocktail submission) {
 
-		cocktailMapper.updateEntity(cocktailFromDb, newCocktail);
+		cocktailMapper.updateEntity(cocktailFromDb, submission);
 
 		updatedCocktail = cocktailRepository.save(cocktailFromDb);
-	}
-
-	@Override
-	protected Cocktail mapSubmissionToEntity(CocktailInDTO cocktailInDTO) {
-		return cocktailFromDb;
 	}
 
 	@Override
@@ -53,9 +48,15 @@ public class CocktailChangeSubmissionProcessor extends SubmissionProcessor<Cockt
 	}
 
 	@Override
+	protected Cocktail mapSubmissionToEntity(CocktailInDTO cocktailIn) {
+
+		return cocktailMapper.inDTOToEntity(cocktailIn);
+	}
+
+	@Override
 	protected void post(CocktailInDTO cocktailIn) {
-		if (updatedCocktail == null) {
+
+		if (updatedCocktail == null)
 			throw new ApiException("Cocktail not updated");
-		}
 	}
 }
