@@ -34,6 +34,8 @@ public class UserSubmissionProcessor extends SubmissionProcessor<UserInDTO, User
 	@Override
 	protected void persist(User submission) {
 
+//		submission.setPassword();
+
 		savedUser = userRepository.save(submission);
 	}
 

@@ -1,15 +1,16 @@
 package com.z100.cocktailshop.components.user.controller;
 
 import com.z100.cocktailshop.components.user.dto.UserInDTO;
+import com.z100.cocktailshop.components.user.dto.UserOutDTO;
 import com.z100.cocktailshop.components.user.service.crud.IUserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
 	private final IUserService userService;
@@ -17,30 +18,40 @@ public class UserController {
 	@GetMapping("/login")
 	public String loginView(Model model) {
 
-		model.addAttribute("userDTO", new UserInDTO());
+		model.addAttribute("userIn", new UserInDTO());
+
+//		model.addAttribute("loginError", true);
 
 		return "auth/login";
+	}
+
+	@PostMapping("/auth/login")
+	public String login(@ModelAttribute UserInDTO userDTO, Model model) {
+
+		model.addAttribute("errorMessage", userService.get(1L));
+
+		return "/misc/error";
 	}
 
 	@GetMapping("/register")
 	public String registerView(Model model) {
 
-		model.addAttribute("userDTO", new UserInDTO());
+		model.addAttribute("userIn", new UserInDTO());
+
+//		if (true)
+//			throw new ApiException("Sananas");
 
 		return "auth/register";
 	}
 
-	@PostMapping("/auth/login")
-	public ResponseEntity<?> login(@ModelAttribute UserInDTO userDTO) {
-
-		//TODO: Add login
-		return ResponseEntity.ok("Login süccess");
-	}
-
 	@PostMapping("/auth/register")
-	public ResponseEntity<?> register(@ModelAttribute UserInDTO userIn) {
+	public String register(@ModelAttribute UserInDTO userIn, Model model) {
 
-		return ResponseEntity.ok(userService.register(userIn));
+		UserOutDTO register = userService.register(userIn);
+
+		model.addAttribute("errorMessage", register.getUsername());
+
+		return "misc/error.html";
 	}
 
 	@PutMapping("/user/update")

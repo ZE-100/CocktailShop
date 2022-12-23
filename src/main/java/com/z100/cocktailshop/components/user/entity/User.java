@@ -5,7 +5,9 @@ import com.z100.cocktailshop.components.cocktail.entity.Cocktail;
 import com.z100.cocktailshop.components.role.entity.Role;
 import javax.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -43,4 +45,8 @@ public class User {
 			mappedBy = "user")
 	@JsonBackReference
 	private List<Cocktail> cocktails;
+
+	public void setPassword(String password) {
+
+	}
 }

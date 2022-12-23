@@ -1,16 +1,18 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <p>Login</p>
-
-<form method="post" th:action="@{/auth/login/}" th:object="${userIn}">
+<form method="post" th:action="@{/auth/login}" th:object="${userIn}">
+    <label for="username">Username</label>:
     <input id="username" placeholder="Enter username" required type="text" th:field="*{username}"/>
+    <label for="password">Password</label>:
     <input id="password" placeholder="Enter password" required type="text" th:field="*{password}"/>
     <input type="submit" value="Login">
 </form>
+<p th:if="${loginError}" class="error">Wrong user or password</p>
 </body>
 </html>
