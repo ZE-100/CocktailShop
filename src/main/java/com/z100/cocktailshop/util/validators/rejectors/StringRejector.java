@@ -15,6 +15,8 @@ public class StringRejector extends BaseRejector<String> {
 
 		if (entry == null || entry.isEmpty()) {
 			this.reject();
+		} else {
+			this.accept();
 		}
 
 		return this.pass;

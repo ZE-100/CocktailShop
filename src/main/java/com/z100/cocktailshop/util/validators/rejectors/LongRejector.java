@@ -13,6 +13,8 @@ public class LongRejector extends BaseRejector<Long> {
 
 		if (entry < 0) {
 			this.reject();
+		} else {
+			this.accept();
 		}
 
 		return this.pass;
@@ -22,6 +24,8 @@ public class LongRejector extends BaseRejector<Long> {
 
 		if (entry >= 0) {
 			this.reject();
+		} else {
+			this.accept();
 		}
 
 		return this.pass;

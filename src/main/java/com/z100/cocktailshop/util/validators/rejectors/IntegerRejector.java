@@ -13,6 +13,8 @@ public class IntegerRejector extends BaseRejector<Integer> {
 
 		if (entry > 0) {
 			this.reject();
+		} else {
+			this.accept();
 		}
 
 		return this.pass;
@@ -22,6 +24,8 @@ public class IntegerRejector extends BaseRejector<Integer> {
 
 		if (entry.toString().charAt(0) == '-') {
 			this.reject();
+		} else {
+			this.accept();
 		}
 
 		return this.pass;

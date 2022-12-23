@@ -13,6 +13,8 @@ public class BooleanRejector extends BaseRejector<Boolean> {
 
 		if (Boolean.TRUE.equals(entry)) {
 			this.reject();
+		} else {
+			this.accept();
 		}
 
 		return this.pass;
@@ -22,6 +24,8 @@ public class BooleanRejector extends BaseRejector<Boolean> {
 
 		if (Boolean.FALSE.equals(entry)) {
 			this.reject();
+		} else {
+			this.accept();
 		}
 
 		return this.pass;
