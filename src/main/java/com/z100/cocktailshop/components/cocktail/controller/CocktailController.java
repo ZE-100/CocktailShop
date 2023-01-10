@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
-@Controller("cocktail")
+@Controller
 public class CocktailController {
 
 	private final CocktailService cocktailService;
@@ -19,25 +19,25 @@ public class CocktailController {
 		return ResponseEntity.ok(cocktailService.save(cocktailIn));
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("/cocktail/{id}")
 	public ResponseEntity<?> get(@PathVariable String id) {
 
 		return ResponseEntity.ok(cocktailService.get(Long.valueOf(id)));
 	}
 
-	@GetMapping
+	@GetMapping("/cocktail")
 	public ResponseEntity<?> getAll(@ModelAttribute String username) {
 
 		return ResponseEntity.ok(cocktailService.getAllFrom(username));
 	}
 
-	@PutMapping("{id}")
+	@PutMapping("/cocktail/{id}")
 	public ResponseEntity<?> update(@ModelAttribute CocktailInDTO userChangeIn) {
 
 		return ResponseEntity.ok(cocktailService.update(userChangeIn));
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/cocktail/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 
 		return ResponseEntity.ok(cocktailService.delete(id));

@@ -28,9 +28,9 @@ public class UserController {
 
 		UserOutDTO register = userService.register(userIn);
 
-		model.addAttribute("errorMessage", register.getUsername());
+		model.addAttribute("registerError", register.getUsername());
 
-		return "misc/error.html";
+		return "auth/register";
 	}
 
 	@PutMapping("/user/update")

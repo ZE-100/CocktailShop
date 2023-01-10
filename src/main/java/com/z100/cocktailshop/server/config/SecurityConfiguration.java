@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,14 +34,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final String[] AUTH_WHITELIST = new String[] {
 			"/login",
-			"/register"
+			"/register",
+			"/login.html",
+			"/register.html",
+			"/"
 	};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
-		jwtAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
+//		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+//		jwtAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
 
 		http.csrf().disable()
 				.authorizeRequests()
@@ -50,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.anyRequest().authenticated()
 					.and()
 				.formLogin()
-					.loginPage("/login.html")
+					.loginPage("/login")
 					.failureUrl("/misc/error.html")
 					.and()
 				.logout()
@@ -58,6 +62,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.clearAuthentication(true)
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
 					.logoutSuccessUrl("/");
+	}
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring()
+				.antMatchers("/assets/**"/*, ... */);
 	}
 
 	@Bean

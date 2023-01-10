@@ -3,7 +3,7 @@ package com.z100.cocktailshop.server.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
-@EnableWebMvc
+//@EnableWebMvc
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
@@ -16,8 +16,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		if (!registry.hasMappingForPattern("/static/**")) {
-			registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+		if (!registry.hasMappingForPattern("/assets/**")) {
+			registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
 		}
 	}
 }

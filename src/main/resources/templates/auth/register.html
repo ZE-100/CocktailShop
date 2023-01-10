@@ -1,18 +1,35 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/static/css/style.css}" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTS - Sign up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/css/style.css" th:href="@{/assets/css/style.css}" />
 </head>
 <body>
-<p>Register</p>
+<div th:replace="/includes/header :: header"> </div>
 
-<form method="post" th:action="@{/auth/register/}" th:object="${userIn}">
-    <input id="username" placeholder="Enter username" required type="text" th:field="*{email}"/>
-    <input id="username" placeholder="Enter username" required type="text" th:field="*{username}"/>
-    <input id="password" placeholder="Enter password" required type="text" th:field="*{password}"/>
-    <input type="submit" value="Register">
-</form>
+<div class="wrapper">
+    <form method="post" class="form-signin" th:action="@{/auth/register}" th:object="${userIn}">
+        <h2 class="form-signin-heading">Please sing in!</h2>
+        <input type="text" class="form-control" name="username" placeholder="Create username" th:field="*{username}" required autofocus />
+        <input type="text" class="form-control" name="email" placeholder="Enter email address" th:field="*{email}" required />
+        <input type="password" class="form-control" name="password" placeholder="Create password" th:field="*{password}" required />
+        <div class="form-signin-additional">
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me</label>
+            </label>
+            <a th:href="@{/login}">Sign in instead</a>
+        </div>
+
+        <p th:if="${registerError}" class="error">Invalid email and/or password</p>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+</div>
+
+<div th:replace="/includes/footer :: footer"> </div>
 </body>
 </html>

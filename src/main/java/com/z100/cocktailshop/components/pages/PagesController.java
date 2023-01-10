@@ -24,13 +24,14 @@ public class PagesController  {
 
 		model.addAttribute("userIn", new UserInDTO());
 
-		//		model.addAttribute("loginError", true);
 
 		return "auth/login";
 	}
 
 	@GetMapping("/register")
 	public String register(Model model) {
+
+		model.addAttribute("userIn", new UserInDTO());
 
 		return "auth/register";
 	}
