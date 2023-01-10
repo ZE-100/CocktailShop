@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CocktailRepository extends CrudRepository<Cocktail, Long> {
 
-	Optional<List<Cocktail>> findAllByUser(User user);
+	List<Cocktail> findAllByUser(User user);
 
-	Optional<List<Cocktail>> findAllByUserUsername(String username);
+	List<Cocktail> findAllByUserUsername(String username);
 }

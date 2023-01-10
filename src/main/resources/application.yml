@@ -16,7 +16,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     password: root
     username: root
-    url: jdbc:mariadb://localhost:3307/cocktailshop
+    url: jdbc:mariadb://0.0.0.0:3307/cocktailshop
 server:
   error:
     include-message: always

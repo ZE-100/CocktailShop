@@ -11,7 +11,7 @@ services:
     environment:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ohmyclass
+      MYSQL_DATABASE: cocktailshop
     volumes:
       - db:/var/lib/mysql
 
