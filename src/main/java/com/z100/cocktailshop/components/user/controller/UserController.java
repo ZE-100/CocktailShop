@@ -15,33 +15,12 @@ public class UserController {
 
 	private final IUserService userService;
 
-	@GetMapping("/login")
-	public String loginView(Model model) {
-
-		model.addAttribute("userIn", new UserInDTO());
-
-//		model.addAttribute("loginError", true);
-
-		return "auth/login";
-	}
-
 	@PostMapping("/auth/login")
 	public String login(@ModelAttribute UserInDTO userDTO, Model model) {
 
 		model.addAttribute("errorMessage", userService.get(1L));
 
 		return "/misc/error";
-	}
-
-	@GetMapping("/register")
-	public String registerView(Model model) {
-
-		model.addAttribute("userIn", new UserInDTO());
-
-//		if (true)
-//			throw new ApiException("Sananas");
-
-		return "auth/register";
 	}
 
 	@PostMapping("/auth/register")

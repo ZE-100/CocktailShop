@@ -44,7 +44,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) {
 
-		return isUnprotectedUrl.test(request.getRequestURI());
+		return true;// isUnprotectedUrl.test(request.getRequestURI());
 	}
 
 	@Override

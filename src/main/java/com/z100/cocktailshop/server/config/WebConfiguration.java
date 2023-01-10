@@ -13,4 +13,11 @@ public class WebConfiguration implements WebMvcConfigurer {
 				.allowedOriginPatterns("*").allowedHeaders("Authorization", "Cache-Control", "Content-Type")
 				.maxAge(3600);
 	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		if (!registry.hasMappingForPattern("/static/**")) {
+			registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+		}
+	}
 }

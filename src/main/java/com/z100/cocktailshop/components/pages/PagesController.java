@@ -19,6 +19,22 @@ public class PagesController  {
 		return "index";
 	}
 
+	@GetMapping("/login")
+	public String loginView(Model model) {
+
+		model.addAttribute("userIn", new UserInDTO());
+
+		//		model.addAttribute("loginError", true);
+
+		return "auth/login";
+	}
+
+	@GetMapping("/register")
+	public String register(Model model) {
+
+		return "auth/register";
+	}
+
 	@PostMapping("/shop")
 	public String shop(Model model) {
 

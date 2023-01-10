@@ -1,16 +1,22 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untitled</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/static/css/style.css}" />
 </head>
 <body>
-<div th:replace="/includes/header :: header"> </div>
-<div th:replace="/includes/sample :: sample"> </div>
-<div th:replace="/includes/footer :: footer"> </div>
+<div th:fragment="header">
+    <div class="sample-header">
+        <div class="sample-header-section">
+            <h1>Scroll down to see the parallax effect</h1>
+            <h2>Background landcape scrolls with its own depth </h2>
+        </div>
+    </div>
+</div>
 </body>
 </html>
