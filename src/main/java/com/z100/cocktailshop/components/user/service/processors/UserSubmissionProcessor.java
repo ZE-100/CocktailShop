@@ -2,7 +2,7 @@ package com.z100.cocktailshop.components.user.service.processors;
 
 import com.z100.cocktailshop.components.user.dto.UserInDTO;
 import com.z100.cocktailshop.components.user.entity.User;
-import com.z100.cocktailshop.components.user.repository.UserRepository;
+import com.z100.cocktailshop.components.user.repository.IUserRepository;
 import com.z100.cocktailshop.components.user.service.mapper.UserMapper;
 import com.z100.cocktailshop.components.user.service.validation.UserSubmissionValidator;
 import com.z100.cocktailshop.exceptions.*;
@@ -18,7 +18,7 @@ public class UserSubmissionProcessor extends SubmissionProcessor<UserInDTO, User
 
 	private final UserSubmissionValidator userSubmissionValidator;
 
-	private final UserRepository userRepository;
+	private final IUserRepository userRepository;
 
 	private final UserMapper userMapper;
 

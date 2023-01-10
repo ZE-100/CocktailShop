@@ -8,14 +8,14 @@ import java.util.Objects;
 public class ObjectValidator {
 
 	@SafeVarargs
-	public static <T> void notNull(T... t) {
-		if (Arrays.stream(t).anyMatch(Objects::isNull))
-			throw new ApiException();
+	public static <Obj> void notNull(Obj... obj) {
+		if (Arrays.stream(obj).anyMatch(Objects::isNull))
+			throw new ApiException("Object(s) cannot be null");
 	}
 
 	@SafeVarargs
-	public static <T> void notNull(String message, T... t) {
-		if (Arrays.stream(t).anyMatch(Objects::isNull))
+	public static <Obj> void notNull(String message, Obj... obj) {
+		if (Arrays.stream(obj).anyMatch(Objects::isNull))
 			throw new ApiException(message);
 	}
 }

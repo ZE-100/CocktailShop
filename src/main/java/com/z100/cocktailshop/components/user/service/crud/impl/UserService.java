@@ -3,7 +3,7 @@ package com.z100.cocktailshop.components.user.service.crud.impl;
 import com.z100.cocktailshop.components.user.dto.UserInDTO;
 import com.z100.cocktailshop.components.user.dto.UserOutDTO;
 import com.z100.cocktailshop.components.user.entity.User;
-import com.z100.cocktailshop.components.user.repository.UserRepository;
+import com.z100.cocktailshop.components.user.repository.IUserRepository;
 import com.z100.cocktailshop.components.user.service.crud.IUserService;
 import com.z100.cocktailshop.components.user.service.mapper.UserMapper;
 import com.z100.cocktailshop.components.user.service.processors.UserChangeSubmissionProcessor;
@@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
 @AllArgsConstructor
 public class UserService implements IUserService {
 
-	private final UserRepository userRepository;
+	private final IUserRepository userRepository;
 
 	private final UserMapper userMapper;
 

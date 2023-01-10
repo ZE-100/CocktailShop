@@ -1,7 +1,7 @@
 package com.z100.cocktailshop.server.security.services;
 
 import com.z100.cocktailshop.components.user.entity.User;
-import com.z100.cocktailshop.components.user.repository.UserRepository;
+import com.z100.cocktailshop.components.user.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
-	private final UserRepository userRepo;
+	private final IUserRepository userRepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

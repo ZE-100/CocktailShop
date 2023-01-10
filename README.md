@@ -14,30 +14,30 @@ A shop for, you guessed it, cocktails...
 
 Dynamic database switch
 
-- Filesystem
-  - LOG-files
-- PostgreSQL
-  - Userdata storage: User, Roles
-- MariaDB
-  - Cocktail-DB
+- [X] Filesystem
+  - [X] LOG-files
+- [O] PostgreSQL
+  - [O] Userdata storage: User, Roles
+- [X] MariaDB
+  - [O] Cocktail-DB
 
 ### Front- and Backend
 
-- MVC everywhere
-- Dynamically generated
-  - Thymeleaf & Spring-Boot
-- Validation
-  - SQL-Injection
-  - Invalid entries
-  - Session-handling
-- Shop-system
-  - Multiple articles can be (de)selected
-  - Hashed login + session handling
-  - RBAC-system
-    - Admins manage users
-    - Admins manage cocktails
-  - Form validation
-  - Sorting cocktails possible (ABC, price)
-  - HTML + CSS
-  - Send mail for orders
-  - Pay with twint
+- [O] MVC everywhere
+- [O] Dynamically generated
+  - [O] Thymeleaf & Spring-Boot
+- [O] Validation
+  - [X] SQL-Injection
+  - [X] Invalid entries
+  - [O] Session-handling
+- [O] Shop-system
+  - [O] Multiple articles can be (de)selected
+  - [X] Hashed login + session handling
+  - [X] RBAC-system
+    - [O] Admins manage users
+    - [O] Admins manage cocktails
+  - [O] Form validation
+  - [O] Sorting cocktails possible (ABC, price)
+  - [O] HTML + CSS
+  - [O] Send mail for orders
+  - [O] Pay with twint
